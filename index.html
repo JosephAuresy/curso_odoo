@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini-Curso Odoo Community – 4 Días</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --odoo: #714B67;
+    --odoo-dark: #4A2E45;
+    --accent: #E8A838;
+    --accent2: #5B8DB8;
+    --bg: #FAF8F6;
+    --card: #FFFFFF;
+    --text: #1C1019;
+    --muted: #7A6B75;
+    --border: #EAE3E8;
+    --day1: #714B67;
+    --day2: #5B8DB8;
+    --day3: #4A7C59;
+    --day4: #C4623A;
+    --habit: #8B6BB1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--odoo-dark) 0%, var(--odoo) 60%, #9B6A8A 100%);
+    color: white;
+    padding: 52px 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .header p {
+    font-size: 15px;
+    opacity: 0.85;
+    max-width: 440px;
+    position: relative;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    position: relative;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .meta-val {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* INTRO */
+  .intro {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+  }
+  .intro p { color: var(--muted); font-size: 14px; }
+  .structure-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .chip {
+    background: #F3EEF5;
+    color: var(--odoo-dark);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip-icon { font-size: 13px; }
+
+  /* TIMELINE NAV */
+  .timeline-nav {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 0 40px;
+    overflow-x: auto;
+    gap: 0;
+  }
+  .tl-item {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    padding: 14px 8px 12px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tl-item.d1 { border-bottom-color: var(--day1); color: var(--day1); }
+  .tl-item.d2 { border-bottom-color: var(--day2); color: var(--day2); }
+  .tl-item.d3 { border-bottom-color: var(--day3); color: var(--day3); }
+  .tl-item.d4 { border-bottom-color: var(--day4); color: var(--day4); }
+  .tl-num { font-family: 'DM Serif Display', serif; font-size: 22px; display: block; }
+
+  /* CONTENT AREA */
+  .content { padding: 0 0 40px; }
+
+  /* DAY CARD */
+  .day-card {
+    background: white;
+    margin: 24px 24px 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  .day-header {
+    padding: 24px 28px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .day-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    line-height: 1;
+    opacity: 0.15;
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+  .day-meta { flex: 1; }
+  .day-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    color: white;
+  }
+  .day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .day-objetivo {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .day-objetivo::before { content: '🎯'; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+
+  /* Separator */
+  .day-sep { height: 1px; background: var(--border); margin: 0 28px; }
+
+  /* Sections inside day */
+  .day-section { padding: 18px 28px; }
+  .section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  /* Concepts */
+  .concept-list { list-style: none; }
+  .concept-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .concept-list li::before {
+    content: '▸';
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 11px;
+    opacity: 0.5;
+  }
+
+  /* Tasks */
+  .task-list { list-style: none; }
+  .task-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 14px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .task-list li:last-child { border-bottom: none; }
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .checkbox:hover { border-color: var(--odoo); }
+  .checkbox.done { background: var(--odoo); border-color: var(--odoo); }
+  .checkbox.done::after { content: '✓'; color: white; font-size: 10px; font-weight: 700; }
+
+  /* Structure logic */
+  .logic-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .logic-item {
+    background: #F3EEF5;
+    color: var(--odoo-dark);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .logic-arrow {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* Video box */
+  .video-box {
+    background: #1C1019;
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+  .video-icon {
+    width: 36px;
+    height: 36px;
+    background: #FF0000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .video-text { flex: 1; }
+  .video-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .video-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+  }
+  .video-arrow { color: rgba(255,255,255,0.4); font-size: 16px; }
+
+  /* Color variants */
+  .c1 { background: var(--day1); }
+  .c2 { background: var(--day2); }
+  .c3 { background: var(--day3); }
+  .c4 { background: var(--day4); }
+  .border1 { border-top: 4px solid var(--day1); }
+  .border2 { border-top: 4px solid var(--day2); }
+  .border3 { border-top: 4px solid var(--day3); }
+  .border4 { border-top: 4px solid var(--day4); }
+
+  /* HABITO */
+  .habit-card {
+    background: linear-gradient(135deg, var(--habit) 0%, #6B4FA0 100%);
+    color: white;
+    margin: 24px 24px 0;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 16px rgba(139,107,177,0.25);
+  }
+  .habit-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .habit-list { list-style: none; }
+  .habit-list li {
+    padding: 7px 0;
+    font-size: 14px;
+    opacity: 0.9;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .habit-list li:last-child { border-bottom: none; }
+  .habit-list li::before { content: '◆'; font-size: 8px; flex-shrink: 0; margin-top: 5px; opacity: 0.6; }
+
+  /* CONSEJO FINAL */
+  .tip-card {
+    background: #FFFBF0;
+    border: 1px solid #F0D88A;
+    border-left: 4px solid var(--accent);
+    margin: 24px 24px 0;
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: #6B5200;
+    line-height: 1.6;
+  }
+  .tip-card strong { color: #4A3800; display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--odoo-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 28px 40px;
+    margin-top: 32px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer strong { color: rgba(255,255,255,0.9); }
+
+  /* Progress bar */
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    margin: 0;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--day1), var(--day2), var(--day3), var(--day4));
+    width: 0%;
+    transition: width 0.6s ease;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badge">Odoo Community · Mini-Curso</div>
+  <h1>Aprende Odoo en<br><em>4 días</em></h1>
+  <p>Entiende la estructura, practica con videos y domina el sistema desde cero.</p>
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">Duración</span>
+      <span class="meta-val">4 días</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Nivel</span>
+      <span class="meta-val">Principiante</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Módulos</span>
+      <span class="meta-val">Ventas · Compras · Reportes</span>
+    </div>
+  </div>
+</div>
+
+<!-- BARRA DE PROGRESO -->
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- INTRO -->
+<div class="intro">
+  <p>La clave de Odoo es una <strong>lógica que se repite en todos los módulos</strong>. Una vez que la entiendes, cualquier módulo nuevo se vuelve intuitivo.</p>
+  <div class="structure-chips">
+    <div class="chip"><span class="chip-icon">📋</span> Listas</div>
+    <div class="chip"><span class="chip-icon">⚡</span> Acciones</div>
+    <div class="chip"><span class="chip-icon">📊</span> Reportes</div>
+    <div class="chip"><span class="chip-icon">🔑</span> Permisos</div>
+    <div class="chip"><span class="chip-icon">🏢</span> Compañías</div>
+  </div>
+</div>
+
+<!-- TIMELINE NAV -->
+<div class="timeline-nav">
+  <div class="tl-item d1"><span class="tl-num">1</span>Estructura</div>
+  <div class="tl-item d2"><span class="tl-num">2</span>Ventas</div>
+  <div class="tl-item d3"><span class="tl-num">3</span>Compras</div>
+  <div class="tl-item d4"><span class="tl-num">4</span>Reportes</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DÍA 1 -->
+  <div class="day-card border1">
+    <div class="day-header">
+      <div class="day-number" style="color:var(--day1)">01</div>
+      <div class="day-meta">
+        <div class="day-tag c1">Día 1</div>
+        <div class="day-title">Estructura general de Odoo</div>
+        <div class="day-objetivo">Entender cómo está organizado Odoo y cómo navegar por los módulos.</div>
+      </div>
+    </div>
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">📌 Conceptos clave</div>
+      <ul class="concept-list">
+        <li>Módulos principales: Ventas, Compras, Contabilidad, Inventario, Proyectos</li>
+        <li>La lógica que se repite: <strong>Listas → Acciones → Reportes</strong></li>
+        <li>Grupos y Permisos: qué puede ver y hacer cada usuario</li>
+        <li>Multi-empresa: manejar varios negocios dentro de Odoo</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">✅ Tarea del día</div>
+      <ul class="task-list">
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Entrar a Odoo y explorar las pestañas de cada módulo</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ubicar: Clientes, Proveedores, Productos y Reportes</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">📺 Video recomendado</div>
+      <div class="video-box">
+        <div class="video-icon">▶</div>
+        <div class="video-text">
+          <div class="video-label">YouTube · Buscar</div>
+          <div class="video-title">Odoo Accounting Tutorial / Overview</div>
+        </div>
+        <div class="video-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÍA 2 -->
+  <div class="day-card border2">
+    <div class="day-header">
+      <div class="day-number" style="color:var(--day2)">02</div>
+      <div class="day-meta">
+        <div class="day-tag c2">Día 2</div>
+        <div class="day-title">Ventas — Ingresos</div>
+        <div class="day-objetivo">Registrar clientes y facturas de venta correctamente.</div>
+      </div>
+    </div>
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">✅ Tarea práctica</div>
+      <ul class="task-list">
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear un cliente nuevo</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear una factura de venta</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Validarla y marcarla como pagada</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">💡 Relacionarlo con la estructura</div>
+      <div class="logic-row">
+        <div class="logic-item">Cliente → Lista</div>
+        <div class="logic-arrow">→</div>
+        <div class="logic-item">Crear factura → Acción</div>
+        <div class="logic-arrow">→</div>
+        <div class="logic-item">Reporte de ventas → Reporte</div>
+      </div>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">📺 Video recomendado</div>
+      <div class="video-box">
+        <div class="video-icon">▶</div>
+        <div class="video-text">
+          <div class="video-label">YouTube · Buscar</div>
+          <div class="video-title">Odoo Sales Module Tutorial</div>
+        </div>
+        <div class="video-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÍA 3 -->
+  <div class="day-card border3">
+    <div class="day-header">
+      <div class="day-number" style="color:var(--day3)">03</div>
+      <div class="day-meta">
+        <div class="day-tag c3">Día 3</div>
+        <div class="day-title">Compras — Gastos</div>
+        <div class="day-objetivo">Registrar proveedores y facturas de compra correctamente.</div>
+      </div>
+    </div>
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">✅ Tarea práctica</div>
+      <ul class="task-list">
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear un proveedor nuevo</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Registrar una factura de compra</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Validarla y marcarla como pagada</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">💡 Relacionarlo con la estructura</div>
+      <div class="logic-row">
+        <div class="logic-item">Proveedor → Lista</div>
+        <div class="logic-arrow">→</div>
+        <div class="logic-item">Registrar compra → Acción</div>
+        <div class="logic-arrow">→</div>
+        <div class="logic-item">Reportes de gastos → Reporte</div>
+      </div>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">📺 Video recomendado</div>
+      <div class="video-box">
+        <div class="video-icon">▶</div>
+        <div class="video-text">
+          <div class="video-label">YouTube · Buscar</div>
+          <div class="video-title">Odoo Purchase Module Tutorial</div>
+        </div>
+        <div class="video-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÍA 4 -->
+  <div class="day-card border4">
+    <div class="day-header">
+      <div class="day-number" style="color:var(--day4)">04</div>
+      <div class="day-meta">
+        <div class="day-tag c4">Día 4</div>
+        <div class="day-title">Reportes y control</div>
+        <div class="day-objetivo">Revisar resultados y entender la contabilidad básica del negocio.</div>
+      </div>
+    </div>
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">✅ Tarea práctica</div>
+      <ul class="task-list">
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ir a Reportes → Pérdidas y Ganancias</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ir a Reportes → Balance General</li>
+        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Revisar ventas vs. gastos y ver el resultado</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">💡 Cómo se conecta todo</div>
+      <ul class="concept-list">
+        <li>Los reportes resumen automáticamente todo lo que hiciste en ventas y compras.</li>
+        <li>Aquí ves la imagen completa del negocio en tiempo real.</li>
+        <li>Todo lo anterior (días 1–3) desemboca en estos reportes.</li>
+      </ul>
+    </div>
+
+    <div class="day-sep"></div>
+
+    <div class="day-section">
+      <div class="section-title">📺 Video recomendado</div>
+      <div class="video-box">
+        <div class="video-icon">▶</div>
+        <div class="video-text">
+          <div class="video-label">YouTube · Buscar</div>
+          <div class="video-title">Odoo Accounting Basics / Reports</div>
+        </div>
+        <div class="video-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HÁBITO MENSUAL -->
+  <div class="habit-card">
+    <div class="habit-title">📅 Hábito mensual</div>
+    <ul class="habit-list">
+      <li>Revisar ventas, gastos y balances cada mes</li>
+      <li>Ver clientes con pagos pendientes</li>
+      <li>Verificar permisos y compañías configuradas correctamente</li>
+    </ul>
+  </div>
+
+  <!-- CONSEJO FINAL -->
+  <div class="tip-card">
+    <strong>💡 Consejo final</strong>
+    Primero entiende la estructura de Odoo: módulos, listas, acciones, reportes y permisos. Luego practica con los videos. Con esta base, cualquier módulo nuevo que explores se vuelve intuitivo desde el primer día.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Mini-Curso Odoo Community</strong><br>
+  4 días · Principiantes · Versión gratuita de Odoo<br>
+  <span style="opacity:0.4; font-size:11px; margin-top:6px; display:block;">Guarda este correo para consultarlo cuando lo necesites.</span>
+</div>
+
+<script>
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.checkbox').length;
+    const done = document.querySelectorAll('.checkbox.done').length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('progress').style.width = pct + '%';
+  }
+</script>
+
+</body>
+</html>
