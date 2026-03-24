@@ -3,228 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini-Curso Odoo Community – 4 Días</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Odoo Community – Curso NaturLandia / Sabasnieves</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --odoo: #714B67;
     --odoo-dark: #4A2E45;
     --accent: #E8A838;
-    --accent2: #5B8DB8;
     --bg: #FAF8F6;
     --card: #FFFFFF;
     --text: #1C1019;
     --muted: #7A6B75;
     --border: #EAE3E8;
     --day1: #714B67;
-    --day2: #5B8DB8;
-    --day3: #4A7C59;
-    --day4: #C4623A;
-    --habit: #8B6BB1;
+    --day2: #3A7D6E;
+    --day3: #C4623A;
+    --day4: #3A5F8A;
+    --day5: #7A5C9E;
+    --green: #2D6A4F;
+    --red: #9B2226;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     line-height: 1.7;
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 0;
   }
 
-  /* HEADER */
+  /* ── HEADER ── */
   .header {
-    background: linear-gradient(135deg, var(--odoo-dark) 0%, var(--odoo) 60%, #9B6A8A 100%);
+    background: linear-gradient(135deg, #2B1A28 0%, var(--odoo-dark) 50%, #714B67 100%);
     color: white;
-    padding: 52px 40px 44px;
+    padding: 48px 40px 40px;
     position: relative;
     overflow: hidden;
   }
   .header::before {
-    content: '';
+    content: '🌿';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: -30px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
+    right: 36px; top: 32px;
+    font-size: 72px;
+    opacity: 0.15;
   }
   .badge {
     display: inline-block;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
     border-radius: 20px;
     padding: 4px 14px;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
   .header h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: 36px;
+    font-size: 34px;
     line-height: 1.15;
-    margin-bottom: 10px;
-    position: relative;
+    margin-bottom: 8px;
   }
-  .header h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .header p {
-    font-size: 15px;
-    opacity: 0.85;
-    max-width: 440px;
-    position: relative;
-  }
-  .header-meta {
-    display: flex;
-    gap: 24px;
-    margin-top: 28px;
-    position: relative;
-  }
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .meta-label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
-  .meta-val {
+  .header h1 em { font-style: italic; color: var(--accent); }
+  .header-sub {
     font-size: 14px;
-    font-weight: 600;
+    opacity: 0.75;
+    margin-bottom: 24px;
+    max-width: 480px;
   }
-
-  /* INTRO */
-  .intro {
-    background: white;
-    border-bottom: 1px solid var(--border);
-    padding: 28px 40px;
-  }
-  .intro p { color: var(--muted); font-size: 14px; }
-  .structure-chips {
+  .header-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 16px;
   }
-  .chip {
-    background: #F3EEF5;
-    color: var(--odoo-dark);
+  .pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 6px;
-    padding: 5px 12px;
+    padding: 4px 12px;
     font-size: 12px;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
   }
-  .chip-icon { font-size: 13px; }
 
-  /* TIMELINE NAV */
-  .timeline-nav {
-    display: flex;
-    background: white;
-    border-bottom: 2px solid var(--border);
-    padding: 0 40px;
-    overflow-x: auto;
-    gap: 0;
+  /* ── PROGRESS ── */
+  .progress-wrap { background: #2B1A28; padding: 12px 40px; display: flex; align-items: center; gap: 14px; }
+  .progress-label { font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--day1), var(--day2), var(--day3), var(--day4), var(--day5)); width: 0%; transition: width 0.5s ease; border-radius: 10px; }
+  .progress-pct { font-size: 12px; font-weight: 600; color: var(--accent); min-width: 32px; text-align: right; }
+
+  /* ── INTRO BANNER ── */
+  .intro {
+    background: #FFF8EC;
+    border-left: 4px solid var(--accent);
+    padding: 20px 28px;
+    margin: 24px 24px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #5A3E00;
+    line-height: 1.65;
   }
-  .tl-item {
-    flex: 1;
-    min-width: 80px;
-    text-align: center;
-    padding: 14px 8px 12px;
-    border-bottom: 3px solid transparent;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+  .intro strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; color: #3A2800; }
+
+  /* ── SECTION TITLE ── */
+  .section-heading {
+    padding: 28px 28px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
   }
-  .tl-item.d1 { border-bottom-color: var(--day1); color: var(--day1); }
-  .tl-item.d2 { border-bottom-color: var(--day2); color: var(--day2); }
-  .tl-item.d3 { border-bottom-color: var(--day3); color: var(--day3); }
-  .tl-item.d4 { border-bottom-color: var(--day4); color: var(--day4); }
-  .tl-num { font-family: 'DM Serif Display', serif; font-size: 22px; display: block; }
 
-  /* CONTENT AREA */
-  .content { padding: 0 0 40px; }
-
-  /* DAY CARD */
+  /* ── DAY CARD ── */
   .day-card {
     background: white;
-    margin: 24px 24px 0;
+    margin: 0 24px 20px;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
     border: 1px solid var(--border);
   }
-  .day-header {
-    padding: 24px 28px 20px;
+  .day-top {
+    padding: 22px 26px 18px;
     display: flex;
+    gap: 16px;
     align-items: flex-start;
-    gap: 18px;
   }
-  .day-number {
+  .day-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 48px;
+    font-size: 44px;
     line-height: 1;
-    opacity: 0.15;
+    opacity: 0.12;
     flex-shrink: 0;
-    margin-top: -4px;
+    margin-top: -2px;
   }
-  .day-meta { flex: 1; }
+  .day-info { flex: 1; }
   .day-tag {
     display: inline-block;
+    color: white;
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 3px 10px;
     border-radius: 4px;
-    margin-bottom: 8px;
-    color: white;
+    margin-bottom: 7px;
   }
   .day-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.2;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
-  .day-objetivo {
+  .day-goal {
     font-size: 13px;
     color: var(--muted);
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
+    font-style: italic;
   }
-  .day-objetivo::before { content: '🎯'; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .day-goal::before { content: '🎯 '; font-style: normal; }
 
-  /* Separator */
-  .day-sep { height: 1px; background: var(--border); margin: 0 28px; }
-
-  /* Sections inside day */
-  .day-section { padding: 18px 28px; }
-  .section-title {
+  /* ── INNER SECTIONS ── */
+  .sep { height: 1px; background: var(--border); margin: 0 26px; }
+  .inner { padding: 16px 26px; }
+  .inner-title {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -233,189 +178,247 @@
     margin-bottom: 10px;
   }
 
-  /* Concepts */
+  /* ── CONCEPT LIST ── */
   .concept-list { list-style: none; }
   .concept-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
     padding: 5px 0;
     font-size: 14px;
-    color: var(--text);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border-bottom: 1px dashed var(--border);
   }
-  .concept-list li::before {
-    content: '▸';
-    flex-shrink: 0;
-    margin-top: 1px;
-    font-size: 11px;
-    opacity: 0.5;
-  }
+  .concept-list li:last-child { border-bottom: none; }
+  .concept-list li::before { content: '▸'; color: var(--muted); flex-shrink: 0; margin-top: 2px; font-size: 10px; }
 
-  /* Tasks */
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .compare-table th {
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: #F5F0F4;
+    color: var(--odoo-dark);
+  }
+  .compare-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .old { color: var(--muted); }
+  .compare-table .new { color: var(--odoo-dark); font-weight: 500; }
+  .compare-table .arrow { color: var(--accent); font-size: 16px; text-align: center; }
+
+  /* ── TASK LIST ── */
   .task-list { list-style: none; }
   .task-list li {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    padding: 7px 0;
+    padding: 8px 0;
     font-size: 14px;
     border-bottom: 1px dashed var(--border);
   }
   .task-list li:last-child { border-bottom: none; }
   .checkbox {
-    width: 18px;
-    height: 18px;
+    width: 20px; height: 20px;
     border: 2px solid var(--border);
-    border-radius: 5px;
+    border-radius: 6px;
     flex-shrink: 0;
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 1px;
     cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.15s;
   }
   .checkbox:hover { border-color: var(--odoo); }
   .checkbox.done { background: var(--odoo); border-color: var(--odoo); }
-  .checkbox.done::after { content: '✓'; color: white; font-size: 10px; font-weight: 700; }
+  .checkbox.done::after { content: '✓'; color: white; font-size: 11px; font-weight: 700; }
+  .task-text.done-text { text-decoration: line-through; color: var(--muted); }
 
-  /* Structure logic */
-  .logic-row {
+  /* ── EXAMPLE BOX ── */
+  .example-box {
+    background: #F5F9F7;
+    border: 1px solid #BFD9D2;
+    border-left: 3px solid var(--day2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .example-box .ex-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--day2);
+    margin-bottom: 6px;
+  }
+  .example-box code {
+    background: rgba(58,125,110,0.12);
+    color: var(--day2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+  }
+
+  /* ── MAPPING ROW ── */
+  .mapping {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0;
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
     flex-wrap: wrap;
-    margin-top: 4px;
   }
-  .logic-item {
-    background: #F3EEF5;
-    color: var(--odoo-dark);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px;
+  .mapping:last-child { border-bottom: none; }
+  .map-from {
+    background: #FFF3E0;
+    color: #7A4000;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    min-width: 140px;
+  }
+  .map-arr { padding: 0 10px; color: var(--muted); font-size: 18px; }
+  .map-to {
+    background: #EEF3FD;
+    color: #1A3A6B;
+    padding: 3px 10px;
+    border-radius: 5px;
     font-weight: 500;
   }
-  .logic-arrow {
-    color: var(--muted);
-    font-size: 12px;
-  }
 
-  /* Video box */
+  /* ── VIDEO BOX ── */
   .video-box {
-    background: #1C1019;
+    background: #111;
     border-radius: 10px;
-    padding: 14px 18px;
+    padding: 13px 16px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     text-decoration: none;
-    cursor: pointer;
     transition: opacity 0.15s;
+    margin-bottom: 8px;
   }
-  .video-box:hover { opacity: 0.85; }
-  .video-icon {
-    width: 36px;
-    height: 36px;
+  .video-box:last-child { margin-bottom: 0; }
+  .video-box:hover { opacity: 0.82; }
+  .vico {
+    width: 34px; height: 34px;
     background: #FF0000;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    font-size: 14px;
-  }
-  .video-text { flex: 1; }
-  .video-label {
-    font-size: 10px;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 2px;
-  }
-  .video-title {
     font-size: 13px;
-    font-weight: 500;
     color: white;
   }
-  .video-arrow { color: rgba(255,255,255,0.4); font-size: 16px; }
+  .vico.odoo { background: var(--odoo); }
+  .vtxt { flex: 1; }
+  .vlabel { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .vtitle { font-size: 13px; font-weight: 500; color: white; }
+  .varr { color: rgba(255,255,255,0.3); }
 
-  /* Color variants */
-  .c1 { background: var(--day1); }
-  .c2 { background: var(--day2); }
-  .c3 { background: var(--day3); }
-  .c4 { background: var(--day4); }
-  .border1 { border-top: 4px solid var(--day1); }
-  .border2 { border-top: 4px solid var(--day2); }
-  .border3 { border-top: 4px solid var(--day3); }
-  .border4 { border-top: 4px solid var(--day4); }
+  /* ── NOTE BOX ── */
+  .note {
+    background: #F9F5FF;
+    border: 1px solid #D8C8F0;
+    border-left: 3px solid var(--day5);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #3A1F6B;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .note strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; color: var(--day5); }
 
-  /* HABITO */
+  /* ── HABIT CARD ── */
   .habit-card {
-    background: linear-gradient(135deg, var(--habit) 0%, #6B4FA0 100%);
+    background: linear-gradient(135deg, #2D1B4E 0%, #4A2E80 100%);
     color: white;
-    margin: 24px 24px 0;
+    margin: 0 24px 20px;
     border-radius: 14px;
-    padding: 28px;
-    box-shadow: 0 2px 16px rgba(139,107,177,0.25);
+    padding: 26px 28px;
+    box-shadow: 0 4px 20px rgba(74,46,128,0.3);
   }
   .habit-title {
     font-family: 'DM Serif Display', serif;
     font-size: 20px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 4px;
   }
-  .habit-list { list-style: none; }
-  .habit-list li {
-    padding: 7px 0;
-    font-size: 14px;
-    opacity: 0.9;
+  .habit-sub { font-size: 13px; opacity: 0.6; margin-bottom: 16px; }
+  .habit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .habit-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
     display: flex;
+    gap: 8px;
     align-items: flex-start;
-    gap: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
   }
-  .habit-list li:last-child { border-bottom: none; }
-  .habit-list li::before { content: '◆'; font-size: 8px; flex-shrink: 0; margin-top: 5px; opacity: 0.6; }
+  .habit-icon { font-size: 16px; flex-shrink: 0; }
 
-  /* CONSEJO FINAL */
+  /* ── TIP CARD ── */
   .tip-card {
     background: #FFFBF0;
     border: 1px solid #F0D88A;
     border-left: 4px solid var(--accent);
-    margin: 24px 24px 0;
+    margin: 0 24px 20px;
     border-radius: 10px;
     padding: 20px 24px;
     font-size: 14px;
-    color: #6B5200;
-    line-height: 1.6;
+    color: #5A3E00;
+    line-height: 1.65;
   }
-  .tip-card strong { color: #4A3800; display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .tip-card strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   .footer {
-    background: var(--odoo-dark);
-    color: rgba(255,255,255,0.6);
+    background: #1C1019;
+    color: rgba(255,255,255,0.5);
     text-align: center;
     padding: 28px 40px;
-    margin-top: 32px;
     font-size: 12px;
-    line-height: 1.8;
+    line-height: 1.9;
   }
-  .footer strong { color: rgba(255,255,255,0.9); }
+  .footer strong { color: rgba(255,255,255,0.85); }
 
-  /* Progress bar */
-  .progress-bar {
-    height: 4px;
-    background: var(--border);
-    margin: 0;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--day1), var(--day2), var(--day3), var(--day4));
-    width: 0%;
-    transition: width 0.6s ease;
+  /* ── COLOR HELPERS ── */
+  .c1 { background: var(--day1); }
+  .c2 { background: var(--day2); }
+  .c3 { background: var(--day3); }
+  .c4 { background: var(--day4); }
+  .c5 { background: var(--day5); }
+  .bt1 { border-top: 4px solid var(--day1); }
+  .bt2 { border-top: 4px solid var(--day2); }
+  .bt3 { border-top: 4px solid var(--day3); }
+  .bt4 { border-top: 4px solid var(--day4); }
+  .bt5 { border-top: 4px solid var(--day5); }
+  .txt1 { color: var(--day1); }
+  .txt2 { color: var(--day2); }
+  .txt3 { color: var(--day3); }
+  .txt4 { color: var(--day4); }
+  .txt5 { color: var(--day5); }
+
+  @media (max-width: 500px) {
+    .header { padding: 36px 20px 30px; }
+    .header h1 { font-size: 27px; }
+    .day-card, .habit-card, .tip-card, .intro { margin-left: 12px; margin-right: 12px; }
+    .habit-grid { grid-template-columns: 1fr; }
+    .compare-table { font-size: 12px; }
+    .map-from { min-width: 110px; font-size: 12px; }
   }
 </style>
 </head>
@@ -423,313 +426,419 @@
 
 <!-- HEADER -->
 <div class="header">
-  <div class="badge">Odoo Community · Mini-Curso</div>
-  <h1>Aprende Odoo en<br><em>4 días</em></h1>
-  <p>Entiende la estructura, practica con videos y domina el sistema desde cero.</p>
-  <div class="header-meta">
-    <div class="meta-item">
-      <span class="meta-label">Duración</span>
-      <span class="meta-val">4 días</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Nivel</span>
-      <span class="meta-val">Principiante</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Módulos</span>
-      <span class="meta-val">Ventas · Compras · Reportes</span>
-    </div>
+  <div class="badge">NaturLandia · Sabasnieves · Odoo Community</div>
+  <h1>De Excel a Odoo:<br><em>tu restaurante</em>, paso a paso</h1>
+  <p class="header-sub">Un curso hecho con tus propios datos — InfCaja, centros de costo, productos reales — para que la transición tenga sentido desde el primer día.</p>
+  <div class="header-pills">
+    <span class="pill">🌿 NaturLandia</span>
+    <span class="pill">🏔️ Sabasnieves</span>
+    <span class="pill">5 días · Principiante</span>
+    <span class="pill">Odoo Community (gratis)</span>
+    <span class="pill">Bs + US$ + Tasa BCV</span>
   </div>
 </div>
 
-<!-- BARRA DE PROGRESO -->
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<!-- PROGRESO -->
+<div class="progress-wrap">
+  <span class="progress-label">Tu progreso</span>
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+  <span class="progress-pct" id="pct">0%</span>
+</div>
 
 <!-- INTRO -->
-<div class="intro">
-  <p>La clave de Odoo es una <strong>lógica que se repite en todos los módulos</strong>. Una vez que la entiendes, cualquier módulo nuevo se vuelve intuitivo.</p>
-  <div class="structure-chips">
-    <div class="chip"><span class="chip-icon">📋</span> Listas</div>
-    <div class="chip"><span class="chip-icon">⚡</span> Acciones</div>
-    <div class="chip"><span class="chip-icon">📊</span> Reportes</div>
-    <div class="chip"><span class="chip-icon">🔑</span> Permisos</div>
-    <div class="chip"><span class="chip-icon">🏢</span> Compañías</div>
-  </div>
+<div class="intro" style="margin-top:24px;">
+  <strong>🗺️ Por qué este curso es diferente</strong>
+  Ya tienes un sistema contable muy bien pensado en Excel: InfCaja diario, centros de costo (ALI, VEN, LGH…), centros de depósito (RSE, BAC, BAP, CRT…), tasa BCV diaria, conciliación bancaria. Odoo no reemplaza eso de un golpe — lo va absorbiendo módulo por módulo. Este curso te muestra exactamente cómo.
 </div>
 
-<!-- TIMELINE NAV -->
-<div class="timeline-nav">
-  <div class="tl-item d1"><span class="tl-num">1</span>Estructura</div>
-  <div class="tl-item d2"><span class="tl-num">2</span>Ventas</div>
-  <div class="tl-item d3"><span class="tl-num">3</span>Compras</div>
-  <div class="tl-item d4"><span class="tl-num">4</span>Reportes</div>
-</div>
+<!-- ═══════════════ DÍA 1 ═══════════════ -->
+<div class="section-heading">Semana de aprendizaje</div>
 
-<!-- CONTENT -->
-<div class="content">
-
-  <!-- DÍA 1 -->
-  <div class="day-card border1">
-    <div class="day-header">
-      <div class="day-number" style="color:var(--day1)">01</div>
-      <div class="day-meta">
-        <div class="day-tag c1">Día 1</div>
-        <div class="day-title">Estructura general de Odoo</div>
-        <div class="day-objetivo">Entender cómo está organizado Odoo y cómo navegar por los módulos.</div>
-      </div>
+<div class="day-card bt1">
+  <div class="day-top">
+    <div class="day-num txt1">01</div>
+    <div class="day-info">
+      <div class="day-tag c1">Día 1</div>
+      <div class="day-title">La lógica de Odoo — y cómo encaja con tu Excel</div>
+      <div class="day-goal">Entender la estructura antes de tocar nada.</div>
     </div>
-    <div class="day-sep"></div>
+  </div>
+  <div class="sep"></div>
 
-    <div class="day-section">
-      <div class="section-title">📌 Conceptos clave</div>
-      <ul class="concept-list">
-        <li>Módulos principales: Ventas, Compras, Contabilidad, Inventario, Proyectos</li>
-        <li>La lógica que se repite: <strong>Listas → Acciones → Reportes</strong></li>
-        <li>Grupos y Permisos: qué puede ver y hacer cada usuario</li>
-        <li>Multi-empresa: manejar varios negocios dentro de Odoo</li>
-      </ul>
+  <div class="inner">
+    <div class="inner-title">📌 La regla de oro de Odoo</div>
+    <p style="font-size:14px; margin-bottom:12px;">En <em>todos</em> los módulos de Odoo se repite la misma lógica de 3 pasos:</p>
+    <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+      <div style="background:#F5F0F4; color:var(--odoo-dark); padding:8px 16px; border-radius:8px; font-weight:600; font-size:14px;">📋 Lista</div>
+      <div style="color:var(--muted); font-size:20px;">→</div>
+      <div style="background:#F5F0F4; color:var(--odoo-dark); padding:8px 16px; border-radius:8px; font-weight:600; font-size:14px;">⚡ Acción</div>
+      <div style="color:var(--muted); font-size:20px;">→</div>
+      <div style="background:#F5F0F4; color:var(--odoo-dark); padding:8px 16px; border-radius:8px; font-weight:600; font-size:14px;">📊 Reporte</div>
     </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">✅ Tarea del día</div>
-      <ul class="task-list">
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Entrar a Odoo y explorar las pestañas de cada módulo</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ubicar: Clientes, Proveedores, Productos y Reportes</li>
-      </ul>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">📺 Video recomendado</div>
-      <a href="https://www.odoo.com/slides/slide/getting-started-7063" target="_blank" class="video-box">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">Odoo Learn · Oficial · Gratis</div>
-          <div class="video-title">Getting Started — Odoo Accounting Overview</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-      <a href="https://www.youtube.com/playlist?list=PLeJtXzTubzj_NtowDcdqQi7A4FLvc6f7x" target="_blank" class="video-box" style="margin-top:8px;">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">YouTube · Playlist completa</div>
-          <div class="video-title">Odoo Accounting Tutorials (v14+)</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
+    <div class="example-box">
+      <div class="ex-label">Ejemplo real — Sabasnieves</div>
+      Lista de clientes (comedores habituales) → Crear factura de venta del día → Ver reporte de ventas MEP, PEL, PTE por mes
     </div>
   </div>
 
-  <!-- DÍA 2 -->
-  <div class="day-card border2">
-    <div class="day-header">
-      <div class="day-number" style="color:var(--day2)">02</div>
-      <div class="day-meta">
-        <div class="day-tag c2">Día 2</div>
-        <div class="day-title">Ventas — Ingresos</div>
-        <div class="day-objetivo">Registrar clientes y facturas de venta correctamente.</div>
-      </div>
-    </div>
-    <div class="day-sep"></div>
+  <div class="sep"></div>
 
-    <div class="day-section">
-      <div class="section-title">✅ Tarea práctica</div>
-      <ul class="task-list">
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear un cliente nuevo</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear una factura de venta</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Validarla y marcarla como pagada</li>
-      </ul>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">💡 Relacionarlo con la estructura</div>
-      <div class="logic-row">
-        <div class="logic-item">Cliente → Lista</div>
-        <div class="logic-arrow">→</div>
-        <div class="logic-item">Crear factura → Acción</div>
-        <div class="logic-arrow">→</div>
-        <div class="logic-item">Reporte de ventas → Reporte</div>
-      </div>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">📺 Video recomendado</div>
-      <a href="https://www.odoo.com/slides/sales-17" target="_blank" class="video-box">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">Odoo Learn · Oficial · Gratis</div>
-          <div class="video-title">Odoo Sales — Curso oficial (video + quiz)</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=odoo+ventas+tutorial+español" target="_blank" class="video-box" style="margin-top:8px;">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">YouTube · En español</div>
-          <div class="video-title">Tutoriales Odoo Ventas en español</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-    </div>
+  <div class="inner">
+    <div class="inner-title">🔄 Cómo se traduce tu Excel a Odoo</div>
+    <table class="compare-table">
+      <tr><th>Lo que tienes en Excel</th><th></th><th>Cómo se llama en Odoo</th></tr>
+      <tr><td class="old">Hoja <strong>InfCont</strong> (movimientos)</td><td class="arrow">→</td><td class="new">Asientos contables (Contabilidad)</td></tr>
+      <tr><td class="old">Columnas <strong>BsIng / BsEgr</strong></td><td class="arrow">→</td><td class="new">Debe / Haber en Bolívares</td></tr>
+      <tr><td class="old">Columnas <strong>DolIng / DolEgr</strong></td><td class="arrow">→</td><td class="new">Moneda secundaria (USD)</td></tr>
+      <tr><td class="old">Hoja <strong>CCos</strong> (centros de costo)</td><td class="arrow">→</td><td class="new">Cuentas analíticas / Etiquetas</td></tr>
+      <tr><td class="old">Hoja <strong>CDep</strong> (RSE, BAC, BAP…)</td><td class="arrow">→</td><td class="new">Diarios contables (Caja, Banco)</td></tr>
+      <tr><td class="old"><strong>TasaDolarSol</strong> diaria</td><td class="arrow">→</td><td class="new">Tasas de cambio (automáticas)</td></tr>
+      <tr><td class="old">Hoja <strong>TasaCamb</strong></td><td class="arrow">→</td><td class="new">Tabla de tasas BCV en Odoo</td></tr>
+      <tr><td class="old">Hoja <strong>UnidVenta</strong> (productos)</td><td class="arrow">→</td><td class="new">Líneas de venta / Productos</td></tr>
+    </table>
   </div>
 
-  <!-- DÍA 3 -->
-  <div class="day-card border3">
-    <div class="day-header">
-      <div class="day-number" style="color:var(--day3)">03</div>
-      <div class="day-meta">
-        <div class="day-tag c3">Día 3</div>
-        <div class="day-title">Compras — Gastos</div>
-        <div class="day-objetivo">Registrar proveedores y facturas de compra correctamente.</div>
-      </div>
-    </div>
-    <div class="day-sep"></div>
+  <div class="sep"></div>
 
-    <div class="day-section">
-      <div class="section-title">✅ Tarea práctica</div>
-      <ul class="task-list">
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Crear un proveedor nuevo</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Registrar una factura de compra</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Validarla y marcarla como pagada</li>
-      </ul>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">💡 Relacionarlo con la estructura</div>
-      <div class="logic-row">
-        <div class="logic-item">Proveedor → Lista</div>
-        <div class="logic-arrow">→</div>
-        <div class="logic-item">Registrar compra → Acción</div>
-        <div class="logic-arrow">→</div>
-        <div class="logic-item">Reportes de gastos → Reporte</div>
-      </div>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">📺 Video recomendado</div>
-      <a href="https://www.odoo.com/slides/purchase-20" target="_blank" class="video-box">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">Odoo Learn · Oficial · Gratis</div>
-          <div class="video-title">Odoo Purchase — Curso oficial de Compras</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=odoo+compras+tutorial+español" target="_blank" class="video-box" style="margin-top:8px;">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">YouTube · En español</div>
-          <div class="video-title">Tutoriales Odoo Compras en español</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- DÍA 4 -->
-  <div class="day-card border4">
-    <div class="day-header">
-      <div class="day-number" style="color:var(--day4)">04</div>
-      <div class="day-meta">
-        <div class="day-tag c4">Día 4</div>
-        <div class="day-title">Reportes y control</div>
-        <div class="day-objetivo">Revisar resultados y entender la contabilidad básica del negocio.</div>
-      </div>
-    </div>
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">✅ Tarea práctica</div>
-      <ul class="task-list">
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ir a Reportes → Pérdidas y Ganancias</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Ir a Reportes → Balance General</li>
-        <li><div class="checkbox" onclick="toggleCheck(this)"></div> Revisar ventas vs. gastos y ver el resultado</li>
-      </ul>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">💡 Cómo se conecta todo</div>
-      <ul class="concept-list">
-        <li>Los reportes resumen automáticamente todo lo que hiciste en ventas y compras.</li>
-        <li>Aquí ves la imagen completa del negocio en tiempo real.</li>
-        <li>Todo lo anterior (días 1–3) desemboca en estos reportes.</li>
-      </ul>
-    </div>
-
-    <div class="day-sep"></div>
-
-    <div class="day-section">
-      <div class="section-title">📺 Video recomendado</div>
-      <a href="https://www.odoo.com/slides/accounting-and-invoicing-19" target="_blank" class="video-box">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">Odoo Learn · Oficial · Gratis</div>
-          <div class="video-title">Odoo Accounting & Invoicing — Reportes y más</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=odoo+reportes+contabilidad+español" target="_blank" class="video-box" style="margin-top:8px;">
-        <div class="video-icon">▶</div>
-        <div class="video-text">
-          <div class="video-label">YouTube · En español</div>
-          <div class="video-title">Tutoriales Odoo Reportes en español</div>
-        </div>
-        <div class="video-arrow">→</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- HÁBITO MENSUAL -->
-  <div class="habit-card">
-    <div class="habit-title">📅 Hábito mensual</div>
-    <ul class="habit-list">
-      <li>Revisar ventas, gastos y balances cada mes</li>
-      <li>Ver clientes con pagos pendientes</li>
-      <li>Verificar permisos y compañías configuradas correctamente</li>
+  <div class="inner">
+    <div class="inner-title">✅ Tarea</div>
+    <ul class="task-list">
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Entra a Odoo y abre: Contabilidad, Ventas, Compras, Inventario</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Busca dónde están: Clientes, Proveedores, Productos</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Busca el menú de Reportes en Contabilidad — solo míralo por ahora</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Escribe 3 cosas que reconoces de tu Excel y 3 que aún no entiendes</span></li>
     </ul>
   </div>
 
-  <!-- CONSEJO FINAL -->
-  <div class="tip-card">
-    <strong>💡 Consejo final</strong>
-    Primero entiende la estructura de Odoo: módulos, listas, acciones, reportes y permisos. Luego practica con los videos. Con esta base, cualquier módulo nuevo que explores se vuelve intuitivo desde el primer día.
+  <div class="sep"></div>
+  <div class="inner">
+    <div class="inner-title">📺 Video recomendado</div>
+    <a href="https://www.odoo.com/slides/slide/getting-started-7063" target="_blank" class="video-box">
+      <div class="vico odoo">▶</div>
+      <div class="vtxt"><div class="vlabel">Odoo Learn · Oficial</div><div class="vtitle">Getting Started — Visión general de Odoo</div></div>
+      <div class="varr">→</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=0H4FpkMLOXE" target="_blank" class="video-box">
+      <div class="vico">▶</div>
+      <div class="vtxt"><div class="vlabel">YouTube · En español</div><div class="vtitle">Odoo Community — ¿Qué es y cómo funciona?</div></div>
+      <div class="varr">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ DÍA 2 ═══════════════ -->
+<div class="day-card bt2">
+  <div class="day-top">
+    <div class="day-num txt2">02</div>
+    <div class="day-info">
+      <div class="day-tag c2">Día 2</div>
+      <div class="day-title">Productos y clientes — tu menú en Odoo</div>
+      <div class="day-goal">Cargar los productos reales de NaturLandia y crear clientes.</div>
+    </div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">🥙 Tus productos reales para cargar en Odoo</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Estos son los productos que ya tienes en tu hoja <strong>SCCos</strong> — solo hay que pasarlos a Odoo:</p>
+    <table class="compare-table">
+      <tr><th>Código Excel</th><th>Nombre del producto</th><th>Tipo</th></tr>
+      <tr><td class="old">PFALS</td><td class="new">SandFalafel</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PEMY0</td><td class="new">EmpYuca</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PTOSY</td><td class="new">TostYuca</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PHAM0</td><td class="new">Hamburguesa</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PPANI</td><td class="new">Pan integral</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PMILE</td><td class="new">Milan+Ensalad</td><td>Milanesa garbanzos</td></tr>
+      <tr><td class="old">PPAST</td><td class="new">Pasticho tradicional</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PCACH</td><td class="new">Cachapa</td><td>Producto elaborado</td></tr>
+      <tr><td class="old">PTORT</td><td class="new">Tortas NaturLandia</td><td>Producto elaborado</td></tr>
+    </table>
+    <div class="note" style="margin-top:12px;">
+      <strong>💡 Nota importante</strong>
+      En Odoo puedes poner el código de tu Excel (PFALS, PEMY0…) en el campo "Referencia interna" del producto. Así mantienes la consistencia con tus registros actuales mientras haces la transición.
+    </div>
   </div>
 
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">✅ Tarea práctica</div>
+    <ul class="task-list">
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Inventario → Productos → Crear producto: <strong>SandFalafel</strong> (referencia: PFALS, tipo: Servicio)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Crear producto: <strong>EmpYuca</strong> (referencia: PEMY0)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Crear producto: <strong>TostYuca</strong> (referencia: PTOSY)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Ventas → Clientes → Crear cliente genérico: <strong>"Cliente Mostrador MEP"</strong> para ventas del restaurante</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Crear cliente: <strong>"Cliente Mostrador PEL"</strong> y <strong>"Cliente Mostrador PTE"</strong></span></li>
+    </ul>
+    <div class="example-box" style="margin-top:12px;">
+      <div class="ex-label">¿Por qué clientes genéricos?</div>
+      En tu InfCaja registras ventas por área (MEP, PEL, PTE) sin nombre de cliente individual. En Odoo necesitas un cliente por factura — crea uno genérico por área para mantener la misma lógica de tus centros de costo.
+    </div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="inner">
+    <div class="inner-title">📺 Video recomendado</div>
+    <a href="https://www.odoo.com/slides/inventory-22" target="_blank" class="video-box">
+      <div class="vico odoo">▶</div>
+      <div class="vtxt"><div class="vlabel">Odoo Learn · Oficial</div><div class="vtitle">Gestión de Productos en Odoo Inventory</div></div>
+      <div class="varr">→</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=ZiC_hIosiGQ" target="_blank" class="video-box">
+      <div class="vico">▶</div>
+      <div class="vtxt"><div class="vlabel">YouTube · En español</div><div class="vtitle">Cómo crear productos y clientes en Odoo</div></div>
+      <div class="varr">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ DÍA 3 ═══════════════ -->
+<div class="day-card bt3">
+  <div class="day-top">
+    <div class="day-num txt3">03</div>
+    <div class="day-info">
+      <div class="day-tag c3">Día 3</div>
+      <div class="day-title">Ventas e InfCaja — registrar un día real</div>
+      <div class="day-goal">Recrear en Odoo el InfCaja del 01-04-2025.</div>
+    </div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">📋 Datos reales del InfCaja 01/04/2025</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">De tu hoja <strong>InfContCDep</strong> del 01/04/2025 (Tasa BCV: <strong>Bs 70/$</strong>):</p>
+    <table class="compare-table">
+      <tr><th>Tipo de pago</th><th>Monto</th><th>CDep en Excel</th><th>En Odoo</th></tr>
+      <tr><td>Efectivo USD</td><td class="new">$40.00</td><td class="old">RSE</td><td>Diario: Caja efectivo</td></tr>
+      <tr><td>Punto de venta</td><td class="new">Bs 5,320 ($76)</td><td class="old">BAP</td><td>Diario: Banco / POS</td></tr>
+      <tr><td>Pago móvil</td><td class="new">—</td><td class="old">CRT</td><td>Diario: Pago móvil</td></tr>
+      <tr><td>Crédito (USD)</td><td class="new">$11.00</td><td class="old">CRD</td><td>Diario: Crédito clientes</td></tr>
+    </table>
+    <div class="note" style="margin-top:10px;">
+      <strong>⚡ Clave de la transición</strong>
+      Cada <strong>CDep</strong> de tu Excel (RSE, BAC, BAP, CRT…) se convierte en un <strong>Diario contable</strong> en Odoo. Primero configuramos esos diarios (Día 4), luego los usamos aquí.
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">✅ Tarea práctica — factura de venta real</div>
+    <ul class="task-list">
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Contabilidad → Clientes → Facturas → Nueva factura</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Cliente: <strong>Cliente Mostrador MEP</strong> · Fecha: 01/04/2025</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Agregar líneas: 2× SandFalafel + unidades de EmpYuca y TostYuca del día</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Confirmar (Validar) la factura</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Registrar pago: $40 en efectivo · Diario: Caja</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Comparar el resultado con tu InfCaja en Excel — ¿coinciden los totales?</span></li>
+    </ul>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">🔄 Flujo del InfCaja en Odoo</div>
+    <div class="mapping"><div class="map-from">InfCaja diario (Excel)</div><div class="map-arr">→</div><div class="map-to">Factura de venta validada</div></div>
+    <div class="mapping"><div class="map-from">Tasa BCV del día (70)</div><div class="map-arr">→</div><div class="map-to">Tasa de cambio en asiento</div></div>
+    <div class="mapping"><div class="map-from">CDep RSE (efectivo)</div><div class="map-arr">→</div><div class="map-to">Diario: Caja Sabasnieves</div></div>
+    <div class="mapping"><div class="map-from">CDep BAP (banco pend.)</div><div class="map-arr">→</div><div class="map-to">Diario: Banco Activo</div></div>
+    <div class="mapping"><div class="map-from">CCos VEN (ventas)</div><div class="map-arr">→</div><div class="map-to">Cuenta analítica: Ventas</div></div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="inner">
+    <div class="inner-title">📺 Video recomendado</div>
+    <a href="https://www.odoo.com/slides/accounting-and-invoicing-19" target="_blank" class="video-box">
+      <div class="vico odoo">▶</div>
+      <div class="vtxt"><div class="vlabel">Odoo Learn · Oficial</div><div class="vtitle">Facturación de Clientes — Odoo Accounting</div></div>
+      <div class="varr">→</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=AGgmBGCvQgE" target="_blank" class="video-box">
+      <div class="vico">▶</div>
+      <div class="vtxt"><div class="vlabel">YouTube · En español</div><div class="vtitle">Crear facturas de venta en Odoo paso a paso</div></div>
+      <div class="varr">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ DÍA 4 ═══════════════ -->
+<div class="day-card bt4">
+  <div class="day-top">
+    <div class="day-num txt4">04</div>
+    <div class="day-info">
+      <div class="day-tag c4">Día 4</div>
+      <div class="day-title">Compras, gastos y proveedores</div>
+      <div class="day-goal">Registrar los egresos: ALI, LGH, EDE y más — igual que en tu Excel.</div>
+    </div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">🛒 Tus centros de costo de gasto → Odoo</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Estos son los CCos de egreso que ya usas en tu hoja <strong>CCos</strong>:</p>
+    <div class="mapping"><div class="map-from">ALI — Insumos alimentos</div><div class="map-arr">→</div><div class="map-to">Compra: Proveedor alimentos</div></div>
+    <div class="mapping"><div class="map-from">LGH — Hogar/Limpieza</div><div class="map-arr">→</div><div class="map-to">Factura proveedor: limpieza</div></div>
+    <div class="mapping"><div class="map-from">LGC — Construcción</div><div class="map-arr">→</div><div class="map-to">Factura: ferretería / obras</div></div>
+    <div class="mapping"><div class="map-from">EDE — Empleados destajo</div><div class="map-arr">→</div><div class="map-to">Factura: servicio personal</div></div>
+    <div class="mapping"><div class="map-from">HPR — HonorarProf</div><div class="map-arr">→</div><div class="map-to">Factura: honorarios prof.</div></div>
+    <div class="mapping"><div class="map-from">LEG — Gastos legales</div><div class="map-arr">→</div><div class="map-to">Factura: asesoría legal</div></div>
+    <div class="mapping"><div class="map-from">LGO — Logística oficina</div><div class="map-arr">→</div><div class="map-to">Factura: papelería/oficina</div></div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">✅ Tarea práctica</div>
+    <ul class="task-list">
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Compras → Proveedores → Crear proveedor: <strong>"Proveedor Alimentos"</strong> (para CCos ALI)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Crear proveedor: <strong>"Servicios Generales"</strong> (para LGH, LGC, LGO)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Contabilidad → Proveedores → Facturas → Nueva factura de compra</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Registrar una compra de alimentos (CCos ALI) con su monto en Bs y equivalente en $</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Validar y registrar el pago</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Comparar con tu hoja <strong>InfCont</strong> — ¿el egreso queda reflejado?</span></li>
+    </ul>
+    <div class="example-box" style="margin-top:12px;">
+      <div class="ex-label">Ejemplo concreto de tu archivo</div>
+      Tu hoja CCos muestra que <code>ALI</code> tiene BsEgr de ~$227,374 acumulado en el período. Cada compra de ingredientes que hoy registras en Excel va a ser una <strong>factura de proveedor</strong> en Odoo, asignada a la cuenta analítica ALI.
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">💡 Las personas de tu Excel → Odoo</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Tu hoja <strong>IdPers</strong> tiene colaboradores. En Odoo:</p>
+    <div class="mapping"><div class="map-from">YPAR — Yisel Parada</div><div class="map-arr">→</div><div class="map-to">Proveedor / Empleado</div></div>
+    <div class="mapping"><div class="map-from">ESNC — Enid Sánchez</div><div class="map-arr">→</div><div class="map-to">Proveedor / Empleado</div></div>
+    <div class="mapping"><div class="map-from">LGES — Luis G. Escovar</div><div class="map-arr">→</div><div class="map-to">Proveedor / Empleado</div></div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="inner">
+    <div class="inner-title">📺 Video recomendado</div>
+    <a href="https://www.odoo.com/slides/purchase-20" target="_blank" class="video-box">
+      <div class="vico odoo">▶</div>
+      <div class="vtxt"><div class="vlabel">Odoo Learn · Oficial</div><div class="vtitle">Módulo de Compras — Odoo Purchase</div></div>
+      <div class="varr">→</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=rXMoeC3MGGE" target="_blank" class="video-box">
+      <div class="vico">▶</div>
+      <div class="vtxt"><div class="vlabel">YouTube · En español</div><div class="vtitle">Facturas de proveedor y gastos en Odoo</div></div>
+      <div class="varr">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ DÍA 5 ═══════════════ -->
+<div class="day-card bt5">
+  <div class="day-top">
+    <div class="day-num txt5">05</div>
+    <div class="day-info">
+      <div class="day-tag c5">Día 5</div>
+      <div class="day-title">Reportes — ver el negocio como un todo</div>
+      <div class="day-goal">Comparar los reportes de Odoo con tu hoja EstadMes y los totales de CCos.</div>
+    </div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">📊 Tus estadísticas reales 2024 para contrastar</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">De tu hoja <strong>EstadMes</strong> — ventas en US$ por área (Mayo a Dic 2024):</p>
+    <table class="compare-table">
+      <tr><th>Área (CCos)</th><th>May</th><th>Jul</th><th>Sep</th><th>Oct</th><th>Dic</th></tr>
+      <tr><td class="new"><strong>MEP</strong></td><td>$1,162</td><td>$2,167</td><td>$1,975</td><td>$2,584</td><td>$2,210</td></tr>
+      <tr><td class="new"><strong>PEL</strong></td><td>$117</td><td>$204</td><td>$730</td><td>$1,053</td><td>$931</td></tr>
+      <tr><td class="new"><strong>PTE</strong></td><td>$117</td><td>$281</td><td>$285</td><td>$295</td><td>$629</td></tr>
+    </table>
+    <div class="note" style="margin-top:10px;">
+      <strong>📈 Lo que Odoo puede hacer mejor</strong>
+      Este resumen que hoy construyes manualmente en Excel (EstadMes, EstadMesUnidVent) Odoo lo genera automáticamente en Reportes → Ventas por producto, por cliente, por fecha — sin fórmulas, sin copiar datos.
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">✅ Tarea práctica</div>
+    <ul class="task-list">
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Contabilidad → Reportes → <strong>Pérdidas y Ganancias</strong> (P&G)</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Contabilidad → Reportes → <strong>Balance General</strong></span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Ir a Ventas → Reportes → <strong>Análisis de ventas</strong> → agrupar por producto</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Comparar SandFalafel vs EmpYuca vs TostYuca en unidades vendidas</span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">Comparar el total de ingresos con lo que tienes en tu hoja <strong>EstadMes</strong></span></li>
+      <li><div class="checkbox" onclick="toggleCheck(this)"></div><span class="task-text">¿Los números coinciden? Anota las diferencias — esas son las brechas a resolver</span></li>
+    </ul>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="inner">
+    <div class="inner-title">🔄 Hoja a hoja: Excel → Odoo Reports</div>
+    <div class="mapping"><div class="map-from">CCos (balance por cuenta)</div><div class="map-arr">→</div><div class="map-to">Balance de comprobación</div></div>
+    <div class="mapping"><div class="map-from">EstadMes (ventas/mes)</div><div class="map-arr">→</div><div class="map-to">Análisis ventas por período</div></div>
+    <div class="mapping"><div class="map-from">EstadMesUnidVent</div><div class="map-arr">→</div><div class="map-to">Ventas → por producto</div></div>
+    <div class="mapping"><div class="map-from">MenuVGen (arrendamiento)</div><div class="map-arr">→</div><div class="map-to">Gastos fijos en P&G</div></div>
+    <div class="mapping"><div class="map-from">DVBConcilia (conciliación)</div><div class="map-arr">→</div><div class="map-to">Contabilidad → Conciliación bancaria</div></div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="inner">
+    <div class="inner-title">📺 Video recomendado</div>
+    <a href="https://www.odoo.com/slides/accounting-and-invoicing-19" target="_blank" class="video-box">
+      <div class="vico odoo">▶</div>
+      <div class="vtxt"><div class="vlabel">Odoo Learn · Oficial</div><div class="vtitle">Reportes Financieros en Odoo Accounting</div></div>
+      <div class="varr">→</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=v3TgkUxS2J8" target="_blank" class="video-box">
+      <div class="vico">▶</div>
+      <div class="vtxt"><div class="vlabel">YouTube · En español</div><div class="vtitle">Balance y P&G en Odoo — Reportes contables</div></div>
+      <div class="varr">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- HÁBITO MENSUAL -->
+<div class="habit-card">
+  <div class="habit-title">📅 Rutina mensual en Odoo</div>
+  <div class="habit-sub">Lo que hoy haces manualmente en Excel, automatizado en Odoo</div>
+  <div class="habit-grid">
+    <div class="habit-item"><span class="habit-icon">📥</span><span>Registrar todas las ventas del mes (MEP, PEL, PTE)</span></div>
+    <div class="habit-item"><span class="habit-icon">🛒</span><span>Registrar compras ALI, LGH y demás gastos</span></div>
+    <div class="habit-item"><span class="habit-icon">🏦</span><span>Conciliar banco (BAC, BAP) con estados de cuenta</span></div>
+    <div class="habit-item"><span class="habit-icon">💱</span><span>Actualizar tasa BCV si Odoo no la trae automática</span></div>
+    <div class="habit-item"><span class="habit-icon">📊</span><span>Revisar P&G y comparar vs. mes anterior</span></div>
+    <div class="habit-item"><span class="habit-icon">🍽️</span><span>Ver ranking de productos: SandFalafel vs EmpYuca vs TostYuca</span></div>
+  </div>
+</div>
+
+<!-- TIP FINAL -->
+<div class="tip-card">
+  <strong>💡 Consejo final — sobre tu sistema actual</strong>
+  Tu Excel es excepcionalmente detallado y bien pensado. No lo abandones de golpe: durante los primeros meses lleva <strong>los dos en paralelo</strong> — registra en Odoo y verifica contra tu Excel. Cuando los números coincidan consistentemente durante 2-3 meses, podrás confiar en Odoo como sistema principal. La clave es la transición gradual, no el salto al vacío.
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <strong>Mini-Curso Odoo Community</strong><br>
-  4 días · Principiantes · Versión gratuita de Odoo<br>
-  <span style="opacity:0.4; font-size:11px; margin-top:6px; display:block;">Guarda este correo para consultarlo cuando lo necesites.</span>
+  <strong>Curso Odoo Community — NaturLandia / Sabasnieves</strong><br>
+  5 días · Basado en tus datos reales · Versión Community (gratuita)<br>
+  <span style="opacity:0.35; font-size:11px; margin-top:4px; display:block;">Guarda este link y compártelo con tu equipo · Se actualiza cuando subes una nueva versión a GitHub</span>
 </div>
 
 <script>
   function toggleCheck(el) {
     el.classList.toggle('done');
+    const textEl = el.nextElementSibling;
+    if (textEl) textEl.classList.toggle('done-text');
     updateProgress();
   }
-
   function updateProgress() {
     const total = document.querySelectorAll('.checkbox').length;
     const done = document.querySelectorAll('.checkbox.done').length;
-    const pct = Math.round((done / total) * 100);
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
     document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
   }
+  updateProgress();
 </script>
-
 </body>
 </html>
